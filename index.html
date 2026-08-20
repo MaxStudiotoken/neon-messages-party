@@ -4,10 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Neon Messages Party · Haz que brille</title>
-    <!-- Font Awesome (opcional para iconos) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
     <style>
-        /* --- RESET & BASE --- */
         * {
             margin: 0;
             padding: 0;
@@ -33,27 +31,49 @@
             padding: 0 24px;
         }
 
-        /* --- NEON GLOW UTILITY --- */
-        .neon-glow {
-            text-shadow:
-                0 0 7px currentColor,
-                0 0 20px currentColor,
-                0 0 40px currentColor;
+        /* ===== LANGUAGE SWITCHER ===== */
+        .lang-switcher {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: rgba(11, 11, 15, 0.92);
+            backdrop-filter: blur(14px);
+            border-bottom: 1px solid rgba(255, 45, 149, 0.15);
+            padding: 10px 20px;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 6px 12px;
+        }
+        .lang-switcher span {
+            cursor: pointer;
+            font-size: 0.95rem;
+            padding: 4px 12px;
+            border-radius: 30px;
+            transition: 0.3s;
+            color: #a0a0b5;
+            font-weight: 600;
+            letter-spacing: 0.3px;
+        }
+        .lang-switcher span:hover {
+            background: rgba(255, 45, 149, 0.15);
+            color: #fff;
+        }
+        .lang-switcher span.active {
+            background: #ff2d95;
+            color: #fff;
+            box-shadow: 0 0 25px rgba(255, 45, 149, 0.3);
+        }
+        .lang-switcher .flag {
+            margin-right: 4px;
         }
 
-        .neon-box {
-            box-shadow:
-                0 0 10px var(--neon-color, #ff2d95),
-                0 0 30px var(--neon-color, #ff2d95),
-                inset 0 0 10px var(--neon-color, #ff2d95);
-        }
-
-        /* --- HEADER --- */
+        /* ===== HEADER ===== */
         .header {
             padding: 20px 0;
             border-bottom: 1px solid rgba(255, 255, 255, 0.05);
             position: sticky;
-            top: 0;
+            top: 56px;
             background: rgba(11, 11, 15, 0.85);
             backdrop-filter: blur(12px);
             z-index: 100;
@@ -76,6 +96,15 @@
             gap: 8px;
         }
 
+        .logo img {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid #ff2d95;
+            box-shadow: 0 0 25px rgba(255, 45, 149, 0.2);
+        }
+
         .logo span {
             background: linear-gradient(135deg, #ff2d95, #ff6a00);
             -webkit-background-clip: text;
@@ -88,6 +117,7 @@
             color: #ff2d95;
             font-size: 2rem;
             filter: drop-shadow(0 0 12px #ff2d95);
+            display: none;
         }
 
         .header-cta {
@@ -108,9 +138,9 @@
             box-shadow: 0 0 45px rgba(255, 45, 149, 0.5);
         }
 
-        /* --- HERO --- */
+        /* ===== HERO ===== */
         .hero {
-            padding: 60px 0 80px;
+            padding: 50px 0 80px;
             text-align: center;
             position: relative;
         }
@@ -140,6 +170,48 @@
             backdrop-filter: blur(4px);
         }
 
+        /* LOGO grande en hero */
+        .hero-logo {
+            width: 110px;
+            height: 110px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid #ff2d95;
+            box-shadow: 0 0 60px rgba(255, 45, 149, 0.3);
+            margin: 0 auto 20px;
+            display: block;
+            background: #0b0b0f;
+            transition: transform 0.3s;
+        }
+        .hero-logo:hover {
+            transform: scale(1.06);
+            box-shadow: 0 0 80px rgba(255, 45, 149, 0.5);
+        }
+
+        /* MENSAJE MOTIVADOR EN NEÓN (carrusel) */
+        .neon-message-carousel {
+            font-size: clamp(1.8rem, 6vw, 3.2rem);
+            font-weight: 800;
+            min-height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ff2d95;
+            text-shadow:
+                0 0 10px #ff2d95,
+                0 0 30px #ff2d95,
+                0 0 60px #ff2d95;
+            animation: flicker 3.2s infinite;
+            padding: 10px 20px;
+            margin-bottom: 20px;
+            transition: opacity 0.5s ease;
+        }
+
+        @keyframes flicker {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.97; }
+        }
+
         .hero h1 {
             font-size: clamp(2.8rem, 10vw, 5.5rem);
             font-weight: 800;
@@ -158,13 +230,8 @@
         }
 
         @keyframes gradShift {
-            0%,
-            100% {
-                background-position: 0% 50%;
-            }
-            50% {
-                background-position: 100% 50%;
-            }
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
         }
 
         .hero p {
@@ -174,7 +241,7 @@
             color: #b0b0c0;
         }
 
-        /* --- NEON PREVIEW (simulador) --- */
+        /* ===== NEON PREVIEW ===== */
         .neon-preview {
             background: #101015;
             border-radius: 32px;
@@ -289,7 +356,7 @@
             box-shadow: 0 0 30px rgba(255, 45, 149, 0.2);
         }
 
-        /* --- FEATURES --- */
+        /* ===== FEATURES ===== */
         .features {
             padding: 80px 0;
         }
@@ -347,7 +414,7 @@
             font-size: 0.95rem;
         }
 
-        /* --- USE CASES --- */
+        /* ===== USE CASES ===== */
         .usecases {
             padding: 60px 0 80px;
             background: #0e0e14;
@@ -386,7 +453,7 @@
             color: #c0c0d0;
         }
 
-        /* --- EXAMPLES (frases divertidas) --- */
+        /* ===== EXAMPLES ===== */
         .examples {
             padding: 70px 0;
         }
@@ -422,7 +489,7 @@
             margin-right: 6px;
         }
 
-        /* --- CTA FINAL --- */
+        /* ===== CTA ===== */
         .cta-section {
             padding: 70px 0 60px;
             text-align: center;
@@ -471,7 +538,7 @@
             color: #ff2d95;
         }
 
-        /* --- FOOTER --- */
+        /* ===== FOOTER ===== */
         .footer {
             padding: 30px 0;
             border-top: 1px solid rgba(255, 255, 255, 0.04);
@@ -489,7 +556,7 @@
             color: #ff2d95;
         }
 
-        /* --- RESPONSIVE --- */
+        /* ===== RESPONSIVE ===== */
         @media (max-width: 640px) {
             .header .container {
                 flex-direction: column;
@@ -508,6 +575,18 @@
             .usecases-grid {
                 grid-template-columns: 1fr 1fr;
             }
+            .hero-logo {
+                width: 80px;
+                height: 80px;
+            }
+            .logo img {
+                width: 38px;
+                height: 38px;
+            }
+            .lang-switcher span {
+                font-size: 0.8rem;
+                padding: 2px 8px;
+            }
         }
 
         @media (max-width: 420px) {
@@ -522,21 +601,6 @@
             }
         }
 
-        /* --- Animación sutil de parpadeo para el preview --- */
-        @keyframes flicker {
-            0%,
-            100% {
-                opacity: 1;
-            }
-            50% {
-                opacity: 0.97;
-            }
-        }
-        .neon-preview-display {
-            animation: flicker 3.2s infinite;
-        }
-
-        /* Scroll suave */
         html {
             scroll-behavior: smooth;
         }
@@ -544,14 +608,26 @@
 </head>
 <body>
 
+    <!-- ===== LANGUAGE SWITCHER ===== -->
+    <div class="lang-switcher" id="languageSwitcher">
+        <span data-lang="es" class="active"><span class="flag">🇪🇸</span> ES</span>
+        <span data-lang="en"><span class="flag">🇬🇧</span> EN</span>
+        <span data-lang="fr"><span class="flag">🇫🇷</span> FR</span>
+        <span data-lang="it"><span class="flag">🇮🇹</span> IT</span>
+        <span data-lang="zh"><span class="flag">🇨🇳</span> 中文</span>
+        <span data-lang="ru"><span class="flag">🇷🇺</span> RU</span>
+        <span data-lang="de"><span class="flag">🇩🇪</span> DE</span>
+        <span data-lang="pt"><span class="flag">🇧🇷</span> PT</span>
+    </div>
+
     <!-- ===== HEADER ===== -->
     <header class="header">
         <div class="container">
             <div class="logo">
-                <i class="fas fa-lightbulb"></i>
+                <img src="NeonMenssager.png" alt="Neon Messages" />
                 <span>Neon<span style="-webkit-text-fill-color:#fff;background:none;">Messages</span></span>
             </div>
-            <a href="#cta" class="header-cta">
+            <a href="#cta" class="header-cta" data-i18n="header_cta">
                 <i class="fas fa-download" style="margin-right:8px;"></i> Descargar ahora
             </a>
         </div>
@@ -560,15 +636,24 @@
     <!-- ===== HERO ===== -->
     <section class="hero">
         <div class="container">
-            <div class="hero-badge">
+            <div class="hero-badge" data-i18n="badge">
                 <i class="fas fa-bolt" style="margin-right:6px;"></i> Brilla en la noche
             </div>
+
+            <!-- LOGO grande -->
+            <img src="NeonMenssager.png" alt="Neon Messages Logo" class="hero-logo" />
+
+            <!-- MENSAJE MOTIVADOR EN NEÓN (carrusel) -->
+            <div class="neon-message-carousel" id="neonMotivationalMessage">
+                ✨ BRILLA COMO NUNCA ✨
+            </div>
+
             <h1>
-                Escribe <br />
-                <span class="highlight">cualquier cosa…</span><br />
-                sin hablar.
+                <span data-i18n="h1_part1">Escribe</span> <br />
+                <span class="highlight" data-i18n="h1_part2">cualquier cosa…</span><br />
+                <span data-i18n="h1_part3">sin hablar.</span>
             </h1>
-            <p>
+            <p data-i18n="hero_p">
                 Convierte tu móvil en un cartel luminoso que llama la atención
                 en fiestas, conciertos, discotecas o para sacar una sonrisa.
             </p>
@@ -579,7 +664,7 @@
                     ✨ HOLA ✨
                 </div>
                 <div class="neon-preview-controls">
-                    <input type="text" id="neonInput" placeholder="Escribe tu mensaje..." value="✨ HOLA ✨" />
+                    <input type="text" id="neonInput" placeholder="Escribe tu mensaje..." value="✨ HOLA ✨" data-i18n-placeholder="input_placeholder" />
                     <div class="color-group">
                         <span class="color-dot active" style="background:#ff2d95;" data-color="#ff2d95"></span>
                         <span class="color-dot" style="background:#00e5ff;" data-color="#00e5ff"></span>
@@ -587,17 +672,17 @@
                         <span class="color-dot" style="background:#ffea00;" data-color="#ffea00"></span>
                         <span class="color-dot" style="background:#ff6a00;" data-color="#ff6a00"></span>
                     </div>
-                    <button class="btn-neon" id="updateNeonBtn">
+                    <button class="btn-neon" id="updateNeonBtn" data-i18n="update_btn">
                         <i class="fas fa-sync-alt"></i> Actualizar
                     </button>
                 </div>
             </div>
 
             <div style="display:flex;flex-wrap:wrap;gap:14px;justify-content:center;">
-                <a href="#features" class="btn-outline">
+                <a href="#features" class="btn-outline" data-i18n="discover_btn">
                     <i class="fas fa-chevron-down" style="margin-right:8px;"></i> Descubrir
                 </a>
-                <a href="#cta" class="btn-neon">
+                <a href="#cta" class="btn-neon" data-i18n="try_btn">
                     <i class="fas fa-rocket" style="margin-right:8px;"></i> Probar ahora
                 </a>
             </div>
@@ -607,40 +692,40 @@
     <!-- ===== FEATURES ===== -->
     <section class="features" id="features">
         <div class="container">
-            <h2 class="section-title">⚡ Características <span style="color:#ff2d95;">principales</span></h2>
-            <p class="section-sub">
+            <h2 class="section-title" data-i18n="features_title">⚡ Características <span style="color:#ff2d95;">principales</span></h2>
+            <p class="section-sub" data-i18n="features_sub">
                 Todo lo que necesitas para convertir tu pantalla en un letrero neón profesional.
             </p>
             <div class="features-grid">
                 <div class="feature-card">
                     <i class="fas fa-pen-fancy"></i>
-                    <h3>Escribe cualquier mensaje</h3>
-                    <p>Texto libre, sin límites de caracteres.</p>
+                    <h3 data-i18n="f1_title">Escribe cualquier mensaje</h3>
+                    <p data-i18n="f1_desc">Texto libre, sin límites de caracteres.</p>
                 </div>
                 <div class="feature-card">
                     <i class="fas fa-palette"></i>
-                    <h3>Colores neón intensos</h3>
-                    <p>Elige entre tonos vibrantes y brillantes.</p>
+                    <h3 data-i18n="f2_title">Colores neón intensos</h3>
+                    <p data-i18n="f2_desc">Elige entre tonos vibrantes y brillantes.</p>
                 </div>
                 <div class="feature-card">
                     <i class="fas fa-sun"></i>
-                    <h3>Efecto glow real</h3>
-                    <p>Brillo y resplandor auténtico.</p>
+                    <h3 data-i18n="f3_title">Efecto glow real</h3>
+                    <p data-i18n="f3_desc">Brillo y resplandor auténtico.</p>
                 </div>
                 <div class="feature-card">
                     <i class="fas fa-text-height"></i>
-                    <h3>Letras gigantes</h3>
-                    <p>Pantalla completa, máximo impacto.</p>
+                    <h3 data-i18n="f4_title">Letras gigantes</h3>
+                    <p data-i18n="f4_desc">Pantalla completa, máximo impacto.</p>
                 </div>
                 <div class="feature-card">
                     <i class="fas fa-film"></i>
-                    <h3>Animaciones</h3>
-                    <p>Letra por letra, parpadeo, estilo LED.</p>
+                    <h3 data-i18n="f5_title">Animaciones</h3>
+                    <p data-i18n="f5_desc">Letra por letra, parpadeo, estilo LED.</p>
                 </div>
                 <div class="feature-card">
                     <i class="fas fa-moon"></i>
-                    <h3>Modo oscuro</h3>
-                    <p>Perfecto para la noche y discotecas.</p>
+                    <h3 data-i18n="f6_title">Modo oscuro</h3>
+                    <p data-i18n="f6_desc">Perfecto para la noche y discotecas.</p>
                 </div>
             </div>
         </div>
@@ -649,21 +734,21 @@
     <!-- ===== USE CASES ===== -->
     <section class="usecases">
         <div class="container">
-            <h2 class="section-title" style="font-size:clamp(1.8rem,4vw,2.6rem);">
+            <h2 class="section-title" style="font-size:clamp(1.8rem,4vw,2.6rem);" data-i18n="usecases_title">
                 💡 Ideas para usar la app
             </h2>
-            <p class="section-sub" style="margin-bottom:20px;">
+            <p class="section-sub" style="margin-bottom:20px;" data-i18n="usecases_sub">
                 En cualquier lugar, en cualquier momento.
             </p>
             <div class="usecases-grid">
-                <div class="usecase-item"><span class="emoji">😏</span><span>Discotecas</span></div>
-                <div class="usecase-item"><span class="emoji">🎂</span><span>Cumpleaños</span></div>
-                <div class="usecase-item"><span class="emoji">🎶</span><span>Conciertos</span></div>
-                <div class="usecase-item"><span class="emoji">❤️</span><span>Citas / Romance</span></div>
-                <div class="usecase-item"><span class="emoji">😂</span><span>Con amigos</span></div>
-                <div class="usecase-item"><span class="emoji">🎉</span><span>Festivales</span></div>
-                <div class="usecase-item"><span class="emoji">😉</span><span>Ligar sin palabras</span></div>
-                <div class="usecase-item"><span class="emoji">🤣</span><span>Bromas divertidas</span></div>
+                <div class="usecase-item"><span class="emoji">😏</span><span data-i18n="uc1">Discotecas</span></div>
+                <div class="usecase-item"><span class="emoji">🎂</span><span data-i18n="uc2">Cumpleaños</span></div>
+                <div class="usecase-item"><span class="emoji">🎶</span><span data-i18n="uc3">Conciertos</span></div>
+                <div class="usecase-item"><span class="emoji">❤️</span><span data-i18n="uc4">Citas / Romance</span></div>
+                <div class="usecase-item"><span class="emoji">😂</span><span data-i18n="uc5">Con amigos</span></div>
+                <div class="usecase-item"><span class="emoji">🎉</span><span data-i18n="uc6">Festivales</span></div>
+                <div class="usecase-item"><span class="emoji">😉</span><span data-i18n="uc7">Ligar sin palabras</span></div>
+                <div class="usecase-item"><span class="emoji">🤣</span><span data-i18n="uc8">Bromas divertidas</span></div>
             </div>
         </div>
     </section>
@@ -671,21 +756,14 @@
     <!-- ===== EXAMPLES ===== -->
     <section class="examples">
         <div class="container">
-            <h2 class="section-title" style="font-size:clamp(1.8rem,4vw,2.6rem);">
+            <h2 class="section-title" style="font-size:clamp(1.8rem,4vw,2.6rem);" data-i18n="examples_title">
                 😎 Ejemplos <span style="color:#ff2d95;">divertidos</span>
             </h2>
-            <p class="section-sub" style="margin-bottom:8px;">
+            <p class="section-sub" style="margin-bottom:8px;" data-i18n="examples_sub">
                 Frases que llaman la atención.
             </p>
-            <div class="examples-grid">
-                <div class="example-chip"><span class="emoji">🍻</span> PAGA LA RONDA</div>
-                <div class="example-chip"><span class="emoji">😂</span> BUSCO NOVIA</div>
-                <div class="example-chip"><span class="emoji">😎</span> HOY NO TRABAJO</div>
-                <div class="example-chip"><span class="emoji">😏</span> ERES GUAPO</div>
-                <div class="example-chip"><span class="emoji">🔥</span> VEN AQUÍ</div>
-                <div class="example-chip"><span class="emoji">💖</span> TE QUIERO</div>
-                <div class="example-chip"><span class="emoji">🎂</span> FELIZ CUMPLE</div>
-                <div class="example-chip"><span class="emoji">🎶</span> SUBE LA MÚSICA</div>
+            <div class="examples-grid" id="examplesGrid">
+                <!-- Generado por JS con traducciones -->
             </div>
         </div>
     </section>
@@ -693,28 +771,28 @@
     <!-- ===== CTA ===== -->
     <section class="cta-section" id="cta">
         <div class="container">
-            <h2>
+            <h2 data-i18n="cta_title">
                 Hazte ver.<br />
-                <span style="color:#ff2d95;">Enciende el neón.</span>
+                <span style="color:#ff2d95;" data-i18n="cta_highlight">Enciende el neón.</span>
             </h2>
-            <p>
+            <p data-i18n="cta_p">
                 Apaga el sonido… enciende el neón… y deja que todos te miren.
             </p>
             <div class="cta-buttons">
                 <a href="https://play.google.com/store/apps/details?id=vargas.maximo.neonmessages" target="_blank" class="btn-googleplay">
                     <i class="fab fa-google-play"></i>
                     <span>
-                        <strong>Descargar en Google Play</strong><br />
-                        <span style="font-size:0.75rem;color:#707080;">Gratis · Neon Messages Party</span>
+                        <strong data-i18n="cta_btn_strong">Descargar en Google Play</strong><br />
+                        <span style="font-size:0.75rem;color:#707080;" data-i18n="cta_btn_sub">Gratis · Neon Messages Party</span>
                     </span>
                 </a>
-                <a href="#features" class="btn-outline" style="border-color:#606070;color:#b0b0c0;">
+                <a href="#features" class="btn-outline" style="border-color:#606070;color:#b0b0c0;" data-i18n="cta_back">
                     <i class="fas fa-chevron-up" style="margin-right:8px;"></i> Volver arriba
                 </a>
             </div>
-            <p style="margin-top:32px;font-size:0.9rem;color:#606070;">
+            <p style="margin-top:32px;font-size:0.9rem;color:#606070;" data-i18n="cta_footer">
                 <i class="fas fa-star" style="color:#ff2d95;"></i>
-                No escribas mensajes… <strong style="color:#c0c0d0;">haz que brillen.</strong>
+                No escribas mensajes… <strong style="color:#c0c0d0;" data-i18n="cta_footer_strong">haz que brillen.</strong>
             </p>
         </div>
     </section>
@@ -722,71 +800,726 @@
     <!-- ===== FOOTER ===== -->
     <footer class="footer">
         <div class="container">
-            <p>
+            <p data-i18n="footer_copy">
                 &copy; 2026 <a href="https://play.google.com/store/apps/details?id=vargas.maximo.neonmessages" target="_blank">Neon Messages Party</a>
                 &middot; Desarrollado por Maximo Vargas
                 &middot; <i class="fas fa-code" style="color:#ff2d95;"></i> con ❤️
             </p>
             <p style="margin-top:6px;font-size:0.8rem;">
-                <a href="https://play.google.com/store/apps/details?id=vargas.maximo.neonmessages" target="_blank">Google Play</a>
-                &middot; <a href="#">Política de privacidad</a>
+                <a href="https://play.google.com/store/apps/details?id=vargas.maximo.neonmessages" target="_blank" data-i18n="footer_play">Google Play</a>
+                &middot; <a href="#" data-i18n="footer_privacy">Política de privacidad</a>
             </p>
         </div>
     </footer>
 
-    <!-- ===== SCRIPT ===== -->
+    <!-- ============================================================ -->
+    <!-- ===== JAVASCRIPT: TRADUCCIONES + NEON + CARRUSEL ===== -->
+    <!-- ============================================================ -->
     <script>
-        (function() {
-            const display = document.getElementById('neonDisplay');
-            const input = document.getElementById('neonInput');
-            const updateBtn = document.getElementById('updateNeonBtn');
-            const colorDots = document.querySelectorAll('.color-dot');
-
-            let currentColor = '#ff2d95';
-
-            // Actualizar el display
-            function updateNeon() {
-                let text = input.value.trim();
-                if (text === '') text = '✨ NEON ✨';
-                display.textContent = text;
-                display.style.color = currentColor;
-                display.style.textShadow =
-                    `0 0 10px ${currentColor}, 0 0 30px ${currentColor}, 0 0 60px ${currentColor}`;
+        // ==================== TRADUCCIONES ====================
+        const translations = {
+            es: {
+                header_cta: "Descargar ahora",
+                badge: "Brilla en la noche",
+                h1_part1: "Escribe",
+                h1_part2: "cualquier cosa…",
+                h1_part3: "sin hablar.",
+                hero_p: "Convierte tu móvil en un cartel luminoso que llama la atención en fiestas, conciertos, discotecas o para sacar una sonrisa.",
+                input_placeholder: "Escribe tu mensaje...",
+                update_btn: "Actualizar",
+                discover_btn: "Descubrir",
+                try_btn: "Probar ahora",
+                features_title: "⚡ Características principales",
+                features_sub: "Todo lo que necesitas para convertir tu pantalla en un letrero neón profesional.",
+                f1_title: "Escribe cualquier mensaje",
+                f1_desc: "Texto libre, sin límites de caracteres.",
+                f2_title: "Colores neón intensos",
+                f2_desc: "Elige entre tonos vibrantes y brillantes.",
+                f3_title: "Efecto glow real",
+                f3_desc: "Brillo y resplandor auténtico.",
+                f4_title: "Letras gigantes",
+                f4_desc: "Pantalla completa, máximo impacto.",
+                f5_title: "Animaciones",
+                f5_desc: "Letra por letra, parpadeo, estilo LED.",
+                f6_title: "Modo oscuro",
+                f6_desc: "Perfecto para la noche y discotecas.",
+                usecases_title: "💡 Ideas para usar la app",
+                usecases_sub: "En cualquier lugar, en cualquier momento.",
+                uc1: "Discotecas",
+                uc2: "Cumpleaños",
+                uc3: "Conciertos",
+                uc4: "Citas / Romance",
+                uc5: "Con amigos",
+                uc6: "Festivales",
+                uc7: "Ligar sin palabras",
+                uc8: "Bromas divertidas",
+                examples_title: "😎 Ejemplos divertidos",
+                examples_sub: "Frases que llaman la atención.",
+                examples_list: [
+                    "🍻 PAGA LA RONDA",
+                    "😂 BUSCO NOVIA",
+                    "😎 HOY NO TRABAJO",
+                    "😏 ERES GUAPO",
+                    "🔥 VEN AQUÍ",
+                    "💖 TE QUIERO",
+                    "🎂 FELIZ CUMPLE",
+                    "🎶 SUBE LA MÚSICA"
+                ],
+                cta_title: "Hazte ver.",
+                cta_highlight: "Enciende el neón.",
+                cta_p: "Apaga el sonido… enciende el neón… y deja que todos te miren.",
+                cta_btn_strong: "Descargar en Google Play",
+                cta_btn_sub: "Gratis · Neon Messages Party",
+                cta_back: "Volver arriba",
+                cta_footer: "No escribas mensajes…",
+                cta_footer_strong: "haz que brillen.",
+                footer_copy: "© 2026 Neon Messages Party · Desarrollado por Maximo Vargas · con ❤️",
+                footer_play: "Google Play",
+                footer_privacy: "Política de privacidad",
+                // Mensajes motivadores (carrusel)
+                motivational: [
+                    "✨ BRILLA COMO NUNCA ✨",
+                    "💡 LA NOCHE ES TUYA 💡",
+                    "🔥 DEJA TU MARCA 🔥",
+                    "🌟 HAZ QUE TE MIREN 🌟",
+                    "🎉 CELEBRA CADA MOMENTO 🎉",
+                    "💖 ENCIENDE LA PASIÓN 💖",
+                    "⭐ ERES ÚNICO ⭐",
+                    "🚀 SIN LÍMITES 🚀"
+                ]
+            },
+            en: {
+                header_cta: "Download now",
+                badge: "Shine in the night",
+                h1_part1: "Write",
+                h1_part2: "anything…",
+                h1_part3: "without speaking.",
+                hero_p: "Turn your phone into a glowing sign that grabs attention at parties, concerts, clubs, or just to get a smile.",
+                input_placeholder: "Write your message...",
+                update_btn: "Update",
+                discover_btn: "Discover",
+                try_btn: "Try now",
+                features_title: "⚡ Key features",
+                features_sub: "Everything you need to turn your screen into a professional neon sign.",
+                f1_title: "Write any message",
+                f1_desc: "Free text, no character limits.",
+                f2_title: "Intense neon colors",
+                f2_desc: "Choose from vibrant and bright tones.",
+                f3_title: "Real glow effect",
+                f3_desc: "Authentic brightness and glow.",
+                f4_title: "Giant letters",
+                f4_desc: "Full screen, maximum impact.",
+                f5_title: "Animations",
+                f5_desc: "Letter by letter, blink, LED style.",
+                f6_title: "Dark mode",
+                f6_desc: "Perfect for night and clubs.",
+                usecases_title: "💡 Ideas to use the app",
+                usecases_sub: "Anywhere, anytime.",
+                uc1: "Clubs",
+                uc2: "Birthdays",
+                uc3: "Concerts",
+                uc4: "Dates / Romance",
+                uc5: "With friends",
+                uc6: "Festivals",
+                uc7: "Flirt without words",
+                uc8: "Funny jokes",
+                examples_title: "😎 Fun examples",
+                examples_sub: "Phrases that catch attention.",
+                examples_list: [
+                    "🍻 BUY A ROUND",
+                    "😂 LOOKING FOR A DATE",
+                    "😎 NOT WORKING TODAY",
+                    "😏 YOU'RE CUTE",
+                    "🔥 COME HERE",
+                    "💖 I LOVE YOU",
+                    "🎂 HAPPY BIRTHDAY",
+                    "🎶 TURN UP THE MUSIC"
+                ],
+                cta_title: "Be seen.",
+                cta_highlight: "Turn on the neon.",
+                cta_p: "Turn off the sound… turn on the neon… and let everyone stare.",
+                cta_btn_strong: "Download on Google Play",
+                cta_btn_sub: "Free · Neon Messages Party",
+                cta_back: "Back to top",
+                cta_footer: "Don't just write messages…",
+                cta_footer_strong: "make them shine.",
+                footer_copy: "© 2026 Neon Messages Party · Developed by Maximo Vargas · with ❤️",
+                footer_play: "Google Play",
+                footer_privacy: "Privacy Policy",
+                motivational: [
+                    "✨ SHINE LIKE NEVER BEFORE ✨",
+                    "💡 THE NIGHT IS YOURS 💡",
+                    "🔥 LEAVE YOUR MARK 🔥",
+                    "🌟 MAKE THEM LOOK 🌟",
+                    "🎉 CELEBRATE EVERY MOMENT 🎉",
+                    "💖 IGNITE THE PASSION 💖",
+                    "⭐ YOU ARE UNIQUE ⭐",
+                    "🚀 NO LIMITS 🚀"
+                ]
+            },
+            fr: {
+                header_cta: "Télécharger maintenant",
+                badge: "Brille dans la nuit",
+                h1_part1: "Écris",
+                h1_part2: "n'importe quoi…",
+                h1_part3: "sans parler.",
+                hero_p: "Transforme ton téléphone en un panneau lumineux qui attire l'attention lors de fêtes, concerts, discothèques ou pour faire sourire.",
+                input_placeholder: "Écris ton message...",
+                update_btn: "Mettre à jour",
+                discover_btn: "Découvrir",
+                try_btn: "Essayer maintenant",
+                features_title: "⚡ Fonctionnalités principales",
+                features_sub: "Tout ce qu'il faut pour transformer ton écran en un panneau néon professionnel.",
+                f1_title: "Écris n'importe quel message",
+                f1_desc: "Texte libre, sans limite de caractères.",
+                f2_title: "Couleurs néon intenses",
+                f2_desc: "Choisis parmi des tons vibrants et brillants.",
+                f3_title: "Effet glow réel",
+                f3_desc: "Luminosité et éclat authentiques.",
+                f4_title: "Lettres géantes",
+                f4_desc: "Plein écran, impact maximal.",
+                f5_title: "Animations",
+                f5_desc: "Lettre par lettre, clignotement, style LED.",
+                f6_title: "Mode sombre",
+                f6_desc: "Parfait pour la nuit et les discothèques.",
+                usecases_title: "💡 Idées pour utiliser l'app",
+                usecases_sub: "N'importe où, n'importe quand.",
+                uc1: "Discothèques",
+                uc2: "Anniversaires",
+                uc3: "Concerts",
+                uc4: "Rendez-vous / Romance",
+                uc5: "Entre amis",
+                uc6: "Festivals",
+                uc7: "Draguer sans mots",
+                uc8: "Blagues amusantes",
+                examples_title: "😎 Exemples amusants",
+                examples_sub: "Des phrases qui attirent l'attention.",
+                examples_list: [
+                    "🍻 OFFRE UNE TOURNÉE",
+                    "😂 JE CHERCHE UNE COPINE",
+                    "😎 PAS DE BOULOT AUJOURD'HUI",
+                    "😏 T'ES MIGNON",
+                    "🔥 VIENS ICI",
+                    "💖 JE T'AIME",
+                    "🎂 JOYEUX ANNIVERSAIRE",
+                    "🎶 MONTE LE SON"
+                ],
+                cta_title: "Fais-toi voir.",
+                cta_highlight: "Allume le néon.",
+                cta_p: "Éteins le son… allume le néon… et laisse tout le monde te regarder.",
+                cta_btn_strong: "Télécharger sur Google Play",
+                cta_btn_sub: "Gratuit · Neon Messages Party",
+                cta_back: "Retour en haut",
+                cta_footer: "N'écris pas juste des messages…",
+                cta_footer_strong: "fais-les briller.",
+                footer_copy: "© 2026 Neon Messages Party · Développé par Maximo Vargas · avec ❤️",
+                footer_play: "Google Play",
+                footer_privacy: "Politique de confidentialité",
+                motivational: [
+                    "✨ BRILLE COMME JAMAIS ✨",
+                    "💡 LA NUIT EST À TOI 💡",
+                    "🔥 LAISSE TA MARQUE 🔥",
+                    "🌟 FAIS-TOI REGARDER 🌟",
+                    "🎉 CÉLÈBRE CHAQUE MOMENT 🎉",
+                    "💖 ENFLAMME LA PASSION 💖",
+                    "⭐ TU ES UNIQUE ⭐",
+                    "🚀 SANS LIMITES 🚀"
+                ]
+            },
+            it: {
+                header_cta: "Scarica ora",
+                badge: "Brilla nella notte",
+                h1_part1: "Scrivi",
+                h1_part2: "qualsiasi cosa…",
+                h1_part3: "senza parlare.",
+                hero_p: "Trasforma il tuo telefono in un cartello luminoso che attira l'attenzione a feste, concerti, discoteche o per strappare un sorriso.",
+                input_placeholder: "Scrivi il tuo messaggio...",
+                update_btn: "Aggiorna",
+                discover_btn: "Scopri",
+                try_btn: "Prova ora",
+                features_title: "⚡ Funzionalità principali",
+                features_sub: "Tutto ciò che ti serve per trasformare lo schermo in un cartello al neon professionale.",
+                f1_title: "Scrivi qualsiasi messaggio",
+                f1_desc: "Testo libero, senza limiti di caratteri.",
+                f2_title: "Colori al neon intensi",
+                f2_desc: "Scegli tra tonalità vivaci e brillanti.",
+                f3_title: "Effetto glow reale",
+                f3_desc: "Luminosità e bagliore autentici.",
+                f4_title: "Lettere giganti",
+                f4_desc: "Schermo intero, massimo impatto.",
+                f5_title: "Animazioni",
+                f5_desc: "Lettera per lettera, lampeggio, stile LED.",
+                f6_title: "Modalità scura",
+                f6_desc: "Perfetta per la notte e le discoteche.",
+                usecases_title: "💡 Idee per usare l'app",
+                usecases_sub: "Ovunque, in qualsiasi momento.",
+                uc1: "Discoteche",
+                uc2: "Compleanni",
+                uc3: "Concerti",
+                uc4: "Appuntamenti / Romance",
+                uc5: "Con amici",
+                uc6: "Festival",
+                uc7: "Flirtare senza parole",
+                uc8: "Scherzi divertenti",
+                examples_title: "😎 Esempi divertenti",
+                examples_sub: "Frasi che catturano l'attenzione.",
+                examples_list: [
+                    "🍻 PAGA UN GIRO",
+                    "😂 CERCO FIDANZATA",
+                    "😎 OGGI NON LAVORO",
+                    "😏 SEI BELLO",
+                    "🔥 VIENI QUI",
+                    "💖 TI AMO",
+                    "🎂 BUON COMPLEANNO",
+                    "🎶 ALZA LA MUSICA"
+                ],
+                cta_title: "Fatti vedere.",
+                cta_highlight: "Accendi il neon.",
+                cta_p: "Spegni il suono… accendi il neon… e lascia che tutti ti guardino.",
+                cta_btn_strong: "Scarica su Google Play",
+                cta_btn_sub: "Gratuito · Neon Messages Party",
+                cta_back: "Torna su",
+                cta_footer: "Non scrivere solo messaggi…",
+                cta_footer_strong: "falli brillare.",
+                footer_copy: "© 2026 Neon Messages Party · Sviluppato da Maximo Vargas · con ❤️",
+                footer_play: "Google Play",
+                footer_privacy: "Informativa sulla privacy",
+                motivational: [
+                    "✨ BRILLA COME NON MAI ✨",
+                    "💡 LA NOTTE È TUA 💡",
+                    "🔥 LASCIA IL TUO SEGNO 🔥",
+                    "🌟 FAI IN MODO CHE TI GUARDINO 🌟",
+                    "🎉 CELEBRA OGNI MOMENTO 🎉",
+                    "💖 ACCENDI LA PASSIONE 💖",
+                    "⭐ SEI UNICO ⭐",
+                    "🚀 SENZA LIMITI 🚀"
+                ]
+            },
+            zh: {
+                header_cta: "立即下载",
+                badge: "在夜晚闪耀",
+                h1_part1: "写下",
+                h1_part2: "任何东西…",
+                h1_part3: "不说话。",
+                hero_p: "将你的手机变成一个发光标牌，在派对、音乐会、夜店或只是为了逗人一笑时吸引注意力。",
+                input_placeholder: "写下你的信息...",
+                update_btn: "更新",
+                discover_btn: "发现",
+                try_btn: "立即试用",
+                features_title: "⚡ 主要功能",
+                features_sub: "将屏幕变成专业霓虹灯牌所需的一切。",
+                f1_title: "写任何信息",
+                f1_desc: "自由文本，无字符限制。",
+                f2_title: "强烈的霓虹色",
+                f2_desc: "选择鲜艳明亮的色调。",
+                f3_title: "真实发光效果",
+                f3_desc: "真实的亮度和光芒。",
+                f4_title: "巨型字母",
+                f4_desc: "全屏，最大冲击力。",
+                f5_title: "动画",
+                f5_desc: "逐字母、闪烁、LED风格。",
+                f6_title: "暗色模式",
+                f6_desc: "适合夜晚和夜店。",
+                usecases_title: "💡 使用应用的想法",
+                usecases_sub: "随时随地。",
+                uc1: "夜店",
+                uc2: "生日",
+                uc3: "音乐会",
+                uc4: "约会/浪漫",
+                uc5: "和朋友一起",
+                uc6: "节日",
+                uc7: "不用言语调情",
+                uc8: "有趣的笑话",
+                examples_title: "😎 有趣的例子",
+                examples_sub: "吸引注意力的短语。",
+                examples_list: [
+                    "🍻 请客",
+                    "😂 找女朋友",
+                    "😎 今天不工作",
+                    "😏 你真帅",
+                    "🔥 过来",
+                    "💖 我爱你",
+                    "🎂 生日快乐",
+                    "🎶 把音乐开大"
+                ],
+                cta_title: "被人看见。",
+                cta_highlight: "打开霓虹灯。",
+                cta_p: "关掉声音……打开霓虹灯……让所有人都看着你。",
+                cta_btn_strong: "在Google Play下载",
+                cta_btn_sub: "免费 · 霓虹信息派对",
+                cta_back: "回到顶部",
+                cta_footer: "不只是写信息……",
+                cta_footer_strong: "让它们发光。",
+                footer_copy: "© 2026 霓虹信息派对 · 由Maximo Vargas开发 · 用❤️制作",
+                footer_play: "Google Play",
+                footer_privacy: "隐私政策",
+                motivational: [
+                    "✨ 像从未有过的那样闪耀 ✨",
+                    "💡 夜晚是你的 💡",
+                    "🔥 留下你的印记 🔥",
+                    "🌟 让他们看着你 🌟",
+                    "🎉 庆祝每一刻 🎉",
+                    "💖 点燃激情 💖",
+                    "⭐ 你是独一无二的 ⭐",
+                    "🚀 无限 🚀"
+                ]
+            },
+            ru: {
+                header_cta: "Скачать сейчас",
+                badge: "Сияй в ночи",
+                h1_part1: "Напиши",
+                h1_part2: "что угодно…",
+                h1_part3: "не говоря ни слова.",
+                hero_p: "Преврати свой телефон в светящуюся вывеску, которая привлекает внимание на вечеринках, концертах, в клубах или просто чтобы вызвать улыбку.",
+                input_placeholder: "Напиши сообщение...",
+                update_btn: "Обновить",
+                discover_btn: "Узнать",
+                try_btn: "Попробовать сейчас",
+                features_title: "⚡ Основные функции",
+                features_sub: "Всё, что нужно, чтобы превратить экран в профессиональную неоновую вывеску.",
+                f1_title: "Напиши любое сообщение",
+                f1_desc: "Свободный текст, без ограничений по символам.",
+                f2_title: "Насыщенные неоновые цвета",
+                f2_desc: "Выбери яркие и насыщенные тона.",
+                f3_title: "Настоящий эффект свечения",
+                f3_desc: "Подлинный свет и сияние.",
+                f4_title: "Гигантские буквы",
+                f4_desc: "Полный экран, максимальное воздействие.",
+                f5_title: "Анимации",
+                f5_desc: "Побуквенно, мерцание, стиль LED.",
+                f6_title: "Тёмный режим",
+                f6_desc: "Идеально для ночи и клубов.",
+                usecases_title: "💡 Идеи для использования приложения",
+                usecases_sub: "Где угодно, когда угодно.",
+                uc1: "Клубы",
+                uc2: "Дни рождения",
+                uc3: "Концерты",
+                uc4: "Свидания / Романтика",
+                uc5: "С друзьями",
+                uc6: "Фестивали",
+                uc7: "Флирт без слов",
+                uc8: "Весёлые шутки",
+                examples_title: "😎 Весёлые примеры",
+                examples_sub: "Фразы, которые привлекают внимание.",
+                examples_list: [
+                    "🍻 УГОЩАЙ",
+                    "😂 ИЩУ ДЕВУШКУ",
+                    "😎 СЕГОДНЯ НЕ РАБОТАЮ",
+                    "😏 ТЫ КРАСИВЫЙ",
+                    "🔥 ИДИ СЮДА",
+                    "💖 Я ТЕБЯ ЛЮБЛЮ",
+                    "🎂 С ДНЁМ РОЖДЕНИЯ",
+                    "🎶 СДЕЛАЙ ГРОМЧЕ"
+                ],
+                cta_title: "Будь на виду.",
+                cta_highlight: "Включи неон.",
+                cta_p: "Выключи звук… включи неон… и дай всем на себя посмотреть.",
+                cta_btn_strong: "Скачать в Google Play",
+                cta_btn_sub: "Бесплатно · Neon Messages Party",
+                cta_back: "Наверх",
+                cta_footer: "Не просто пиши сообщения…",
+                cta_footer_strong: "заставь их сиять.",
+                footer_copy: "© 2026 Neon Messages Party · Разработано Maximo Vargas · с ❤️",
+                footer_play: "Google Play",
+                footer_privacy: "Политика конфиденциальности",
+                motivational: [
+                    "✨ СИЯЙ КАК НИКОГДА ✨",
+                    "💡 НОЧЬ ТВОЯ 💡",
+                    "🔥 ОСТАВЬ СВОЙ СЛЕД 🔥",
+                    "🌟 ЗАСТАВЬ ИХ СМОТРЕТЬ 🌟",
+                    "🎉 ПРАЗДНУЙ КАЖДЫЙ МОМЕНТ 🎉",
+                    "💖 ЗАЖГИ СТРАСТЬ 💖",
+                    "⭐ ТЫ УНИКАЛЕН ⭐",
+                    "🚀 БЕЗ ГРАНИЦ 🚀"
+                ]
+            },
+            de: {
+                header_cta: "Jetzt herunterladen",
+                badge: "Leuchte in der Nacht",
+                h1_part1: "Schreibe",
+                h1_part2: "irgendetwas…",
+                h1_part3: "ohne zu sprechen.",
+                hero_p: "Verwandle dein Handy in ein leuchtendes Schild, das auf Partys, Konzerten, in Clubs oder einfach für ein Lächeln Aufmerksamkeit erregt.",
+                input_placeholder: "Schreibe deine Nachricht...",
+                update_btn: "Aktualisieren",
+                discover_btn: "Entdecken",
+                try_btn: "Jetzt testen",
+                features_title: "⚡ Hauptfunktionen",
+                features_sub: "Alles, was du brauchst, um deinen Bildschirm in eine professionelle Neonschild zu verwandeln.",
+                f1_title: "Schreibe jede Nachricht",
+                f1_desc: "Freier Text, keine Zeichenbegrenzung.",
+                f2_title: "Intensive Neonfarben",
+                f2_desc: "Wähle aus kräftigen und leuchtenden Tönen.",
+                f3_title: "Echter Glow-Effekt",
+                f3_desc: "Authentische Helligkeit und Leuchten.",
+                f4_title: "Riesenbuchstaben",
+                f4_desc: "Vollbild, maximale Wirkung.",
+                f5_title: "Animationen",
+                f5_desc: "Buchstabe für Buchstabe, Blinken, LED-Stil.",
+                f6_title: "Dunkelmodus",
+                f6_desc: "Perfekt für die Nacht und Clubs.",
+                usecases_title: "💡 Ideen für die App",
+                usecases_sub: "Überall, jederzeit.",
+                uc1: "Clubs",
+                uc2: "Geburtstage",
+                uc3: "Konzerte",
+                uc4: "Dates / Romantik",
+                uc5: "Mit Freunden",
+                uc6: "Festivals",
+                uc7: "Flirten ohne Worte",
+                uc8: "Lustige Witze",
+                examples_title: "😎 Lustige Beispiele",
+                examples_sub: "Sätze, die Aufmerksamkeit erregen.",
+                examples_list: [
+                    "🍻 ZAHL EINE RUNDE",
+                    "😂 SUCHE FREUNDIN",
+                    "😎 HEUTE NICHT ARBEITEN",
+                    "😏 DU BIST HÜBSCH",
+                    "🔥 KOMM HER",
+                    "💖 ICH LIEBE DICH",
+                    "🎂 ALLES GUTE",
+                    "🎶 MACH LAUTER"
+                ],
+                cta_title: "Zeig dich.",
+                cta_highlight: "Mach das Neon an.",
+                cta_p: "Schalte den Ton aus… mach das Neon an… und lass alle dich ansehen.",
+                cta_btn_strong: "Bei Google Play herunterladen",
+                cta_btn_sub: "Kostenlos · Neon Messages Party",
+                cta_back: "Zurück nach oben",
+                cta_footer: "Schreibe nicht nur Nachrichten…",
+                cta_footer_strong: "lass sie leuchten.",
+                footer_copy: "© 2026 Neon Messages Party · Entwickelt von Maximo Vargas · mit ❤️",
+                footer_play: "Google Play",
+                footer_privacy: "Datenschutzrichtlinie",
+                motivational: [
+                    "✨ LEUCHTE WIE NIE ZUVOR ✨",
+                    "💡 DIE NACHT GEHÖRT DIR 💡",
+                    "🔥 HINTERLASSE DEINEN STAMPF 🔥",
+                    "🌟 LASS SIE SCHAUEN 🌟",
+                    "🎉 FEIERE JEDEN MOMENT 🎉",
+                    "💖 ENTFACHE DIE LEIDENSCHAFT 💖",
+                    "⭐ DU BIST EINZIGARTIG ⭐",
+                    "🚀 OHNE GRENZEN 🚀"
+                ]
+            },
+            pt: {
+                header_cta: "Baixar agora",
+                badge: "Brilhe na noite",
+                h1_part1: "Escreva",
+                h1_part2: "qualquer coisa…",
+                h1_part3: "sem falar.",
+                hero_p: "Transforme seu celular em um cartaz luminoso que chama atenção em festas, concertos, baladas ou para arrancar um sorriso.",
+                input_placeholder: "Escreva sua mensagem...",
+                update_btn: "Atualizar",
+                discover_btn: "Descobrir",
+                try_btn: "Experimentar agora",
+                features_title: "⚡ Principais características",
+                features_sub: "Tudo o que você precisa para transformar sua tela em um letreiro neon profissional.",
+                f1_title: "Escreva qualquer mensagem",
+                f1_desc: "Texto livre, sem limites de caracteres.",
+                f2_title: "Cores neon intensas",
+                f2_desc: "Escolha entre tons vibrantes e brilhantes.",
+                f3_title: "Efeito glow real",
+                f3_desc: "Brilho e luminosidade autênticos.",
+                f4_title: "Letras gigantes",
+                f4_desc: "Tela cheia, máximo impacto.",
+                f5_title: "Animações",
+                f5_desc: "Letra por letra, piscando, estilo LED.",
+                f6_title: "Modo escuro",
+                f6_desc: "Perfeito para a noite e baladas.",
+                usecases_title: "💡 Ideias para usar o app",
+                usecases_sub: "Em qualquer lugar, a qualquer momento.",
+                uc1: "Baladas",
+                uc2: "Aniversários",
+                uc3: "Concertos",
+                uc4: "Encontros / Romance",
+                uc5: "Com amigos",
+                uc6: "Festivais",
+                uc7: "Flertar sem palavras",
+                uc8: "Piadas divertidas",
+                examples_title: "😎 Exemplos divertidos",
+                examples_sub: "Frases que chamam atenção.",
+                examples_list: [
+                    "🍻 PAGUE UMA RODADA",
+                    "😂 PROCURO NAMORADA",
+                    "😎 HOJE NÃO TRABALHO",
+                    "😏 VOCÊ É LINDO",
+                    "🔥 VEM AQUI",
+                    "💖 TE AMO",
+                    "🎂 FELIZ ANIVERSÁRIO",
+                    "🎶 AUMENTA A MÚSICA"
+                ],
+                cta_title: "Seja visto.",
+                cta_highlight: "Acenda o neon.",
+                cta_p: "Desligue o som… acenda o neon… e deixe todo mundo te olhar.",
+                cta_btn_strong: "Baixar no Google Play",
+                cta_btn_sub: "Grátis · Neon Messages Party",
+                cta_back: "Voltar ao topo",
+                cta_footer: "Não escreva apenas mensagens…",
+                cta_footer_strong: "faça-as brilhar.",
+                footer_copy: "© 2026 Neon Messages Party · Desenvolvido por Maximo Vargas · com ❤️",
+                footer_play: "Google Play",
+                footer_privacy: "Política de privacidade",
+                motivational: [
+                    "✨ BRILHE COMO NUNCA ✨",
+                    "💡 A NOITE É SUA 💡",
+                    "🔥 DEIXE SUA MARCA 🔥",
+                    "🌟 FAÇA ELES OLHAREM 🌟",
+                    "🎉 CELEBRE CADA MOMENTO 🎉",
+                    "💖 ACENDA A PAIXÃO 💖",
+                    "⭐ VOCÊ É ÚNICO ⭐",
+                    "🚀 SEM LIMITES 🚀"
+                ]
             }
+        };
 
-            // Cambiar color
-            colorDots.forEach(dot => {
-                dot.addEventListener('click', function() {
-                    colorDots.forEach(d => d.classList.remove('active'));
-                    this.classList.add('active');
-                    currentColor = this.dataset.color;
-                    updateNeon();
-                });
+        // ==================== IDIOMA ====================
+        const langSwitcher = document.getElementById('languageSwitcher');
+        const allLangSpans = langSwitcher.querySelectorAll('span');
+        const i18nElements = document.querySelectorAll('[data-i18n]');
+        const placeholders = document.querySelectorAll('[data-i18n-placeholder]');
+
+        let currentMotivationalIndex = 0;
+        let motivationalInterval = null;
+
+        function setLanguage(lang) {
+            allLangSpans.forEach(span => {
+                span.classList.remove('active');
+                if (span.dataset.lang === lang) span.classList.add('active');
             });
 
-            // Eventos
-            updateBtn.addEventListener('click', updateNeon);
-            input.addEventListener('keydown', (e) => {
-                if (e.key === 'Enter') updateNeon();
+            // Actualizar textos estáticos
+            i18nElements.forEach(el => {
+                const key = el.dataset.i18n;
+                if (translations[lang] && translations[lang][key] !== undefined) {
+                    el.innerHTML = translations[lang][key];
+                }
             });
 
-            // Inicializar
-            updateNeon();
+            // Actualizar placeholders
+            placeholders.forEach(el => {
+                const key = el.dataset.i18nPlaceholder;
+                if (translations[lang] && translations[lang][key] !== undefined) {
+                    el.placeholder = translations[lang][key];
+                }
+            });
 
-            // Efecto extra: al hacer clic en un ejemplo, se copia al input
+            // Actualizar ejemplos
+            renderExamples(lang);
+
+            // Actualizar mensaje motivador
+            updateMotivationalMessage(lang);
+
+            document.documentElement.lang = lang;
+        }
+
+        // ==================== MENSAJE MOTIVADOR ====================
+        function updateMotivationalMessage(lang) {
+            const messages = translations[lang]?.motivational || translations.es.motivational;
+            const el = document.getElementById('neonMotivationalMessage');
+            if (el) {
+                el.textContent = messages[currentMotivationalIndex % messages.length];
+            }
+        }
+
+        function startMotivationalCarousel(lang) {
+            if (motivationalInterval) clearInterval(motivationalInterval);
+            motivationalInterval = setInterval(() => {
+                const messages = translations[lang]?.motivational || translations.es.motivational;
+                currentMotivationalIndex = (currentMotivationalIndex + 1) % messages.length;
+                const el = document.getElementById('neonMotivationalMessage');
+                if (el) {
+                    el.style.opacity = '0';
+                    setTimeout(() => {
+                        el.textContent = messages[currentMotivationalIndex];
+                        el.style.opacity = '1';
+                    }, 300);
+                }
+            }, 4000);
+        }
+
+        // ==================== EJEMPLOS ====================
+        function renderExamples(lang) {
+            const grid = document.getElementById('examplesGrid');
+            const list = translations[lang]?.examples_list || translations.es.examples_list;
+            grid.innerHTML = list.map(item => `
+                <div class="example-chip" data-example="${item}">
+                    ${item}
+                </div>
+            `).join('');
+
+            // Reasignar evento click a los ejemplos
             document.querySelectorAll('.example-chip').forEach(chip => {
                 chip.addEventListener('click', function() {
                     const raw = this.textContent.trim();
-                    // extraer solo el texto sin el emoji al inicio
                     const parts = raw.split(' ');
                     const emoji = parts[0];
                     const rest = parts.slice(1).join(' ');
+                    const input = document.getElementById('neonInput');
                     input.value = rest || raw;
                     updateNeon();
                 });
             });
+        }
 
-        })();
+        // ==================== NEON SIMULADOR ====================
+        const display = document.getElementById('neonDisplay');
+        const input = document.getElementById('neonInput');
+        const updateBtn = document.getElementById('updateNeonBtn');
+        const colorDots = document.querySelectorAll('.color-dot');
+
+        let currentColor = '#ff2d95';
+
+        function updateNeon() {
+            let text = input.value.trim();
+            if (text === '') text = '✨ NEON ✨';
+            display.textContent = text;
+            display.style.color = currentColor;
+            display.style.textShadow =
+                `0 0 10px ${currentColor}, 0 0 30px ${currentColor}, 0 0 60px ${currentColor}`;
+        }
+
+        colorDots.forEach(dot => {
+            dot.addEventListener('click', function() {
+                colorDots.forEach(d => d.classList.remove('active'));
+                this.classList.add('active');
+                currentColor = this.dataset.color;
+                updateNeon();
+            });
+        });
+
+        updateBtn.addEventListener('click', updateNeon);
+        input.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') updateNeon();
+        });
+
+        // ==================== INICIALIZAR ====================
+        function init() {
+            const lang = 'es';
+            setLanguage(lang);
+            startMotivationalCarousel(lang);
+            updateNeon();
+
+            // Cambiar idioma al hacer clic
+            allLangSpans.forEach(span => {
+                span.addEventListener('click', function() {
+                    const lang = this.dataset.lang;
+                    setLanguage(lang);
+                    startMotivationalCarousel(lang);
+                    // Actualizar estado del carrusel
+                    const messages = translations[lang]?.motivational || translations.es.motivational;
+                    currentMotivationalIndex = 0;
+                    const el = document.getElementById('neonMotivationalMessage');
+                    if (el) el.textContent = messages[0];
+                });
+            });
+        }
+
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', init);
+        } else {
+            init();
+        }
     </script>
 
 </body>
