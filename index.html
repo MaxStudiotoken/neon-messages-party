@@ -4,6 +4,10 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Neon Messages Party · Haz que brille</title>
+    
+    <!-- FAVICON (Icono de la pestaña del navegador) -->
+    <link rel="icon" type="image/png" href="NeonMenssager.png">
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
     <style>
         * {
@@ -113,13 +117,6 @@
             text-shadow: 0 0 30px rgba(255, 45, 149, 0.3);
         }
 
-        .logo i {
-            color: #ff2d95;
-            font-size: 2rem;
-            filter: drop-shadow(0 0 12px #ff2d95);
-            display: none;
-        }
-
         .header-cta {
             background: linear-gradient(135deg, #ff2d95, #ff6a00);
             padding: 10px 28px;
@@ -170,7 +167,6 @@
             backdrop-filter: blur(4px);
         }
 
-        /* LOGO grande en hero */
         .hero-logo {
             width: 110px;
             height: 110px;
@@ -188,7 +184,6 @@
             box-shadow: 0 0 80px rgba(255, 45, 149, 0.5);
         }
 
-        /* MENSAJE MOTIVADOR EN NEÓN (carrusel) */
         .neon-message-carousel {
             font-size: clamp(1.8rem, 6vw, 3.2rem);
             font-weight: 800;
@@ -489,6 +484,101 @@
             margin-right: 6px;
         }
 
+        /* ===== SECCIÓN X FOLLOW ===== */
+        .x-follow {
+            background: linear-gradient(145deg, #000000, #141414);
+            border: 1px solid rgba(255, 45, 149, 0.2);
+            border-radius: 28px;
+            padding: 45px 30px;
+            margin: 50px auto 30px;
+            max-width: 1100px;
+            text-align: center;
+            box-shadow: 0 0 60px rgba(255, 45, 149, 0.08);
+        }
+        .x-follow .x-logo {
+            font-size: 60px;
+            font-weight: 900;
+            color: #ffffff;
+            line-height: 1;
+            margin-bottom: 15px;
+            text-shadow: 0 0 25px rgba(255, 255, 255, 0.4);
+        }
+        .x-follow h2 {
+            font-size: 2rem;
+            font-weight: 800;
+            color: #ffffff;
+            margin-bottom: 12px;
+        }
+        .x-follow p {
+            color: #b0b0c0;
+            line-height: 1.7;
+            font-size: 1.05rem;
+            max-width: 620px;
+            margin: 0 auto 22px;
+        }
+        .x-handle {
+            display: inline-block;
+            color: #ff2d95;
+            font-weight: 800;
+            font-size: 1.2rem;
+            text-decoration: none;
+            border-bottom: 1px dashed rgba(255, 45, 149, 0.5);
+            padding-bottom: 3px;
+            margin-bottom: 22px;
+            transition: 0.25s;
+        }
+        .x-handle:hover {
+            color: #ffffff;
+            border-color: #ffffff;
+        }
+        .x-buttons {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+        .btn-x {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            color: #000000;
+            background: #ffffff;
+            padding: 14px 28px;
+            border-radius: 50px;
+            font-weight: 800;
+            text-decoration: none;
+            font-size: 1rem;
+            transition: 0.25s;
+            box-shadow: 0 0 25px rgba(255, 255, 255, 0.25);
+            border: none;
+            cursor: pointer;
+            font-family: 'Segoe UI', sans-serif;
+        }
+        .btn-x:hover {
+            transform: translateY(-3px) scale(1.04);
+            box-shadow: 0 0 40px rgba(255, 255, 255, 0.5);
+        }
+        .btn-share-x {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            color: #ffffff;
+            background: #000000;
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            padding: 14px 28px;
+            border-radius: 50px;
+            font-weight: 800;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: 0.25s;
+            font-family: 'Segoe UI', sans-serif;
+        }
+        .btn-share-x:hover {
+            transform: translateY(-3px) scale(1.04);
+            box-shadow: 0 0 40px rgba(255, 45, 149, 0.4);
+            border-color: #ff2d95;
+        }
+
         /* ===== CTA ===== */
         .cta-section {
             padding: 70px 0 60px;
@@ -587,6 +677,15 @@
                 font-size: 0.8rem;
                 padding: 2px 8px;
             }
+            .btn-x, .btn-share-x {
+                padding: 12px 20px;
+                font-size: 0.9rem;
+                width: 100%;
+                justify-content: center;
+            }
+            .x-follow h2 {
+                font-size: 1.5rem;
+            }
         }
 
         @media (max-width: 420px) {
@@ -640,10 +739,8 @@
                 <i class="fas fa-bolt" style="margin-right:6px;"></i> Brilla en la noche
             </div>
 
-            <!-- LOGO grande -->
             <img src="NeonMenssager.png" alt="Neon Messages Logo" class="hero-logo" />
 
-            <!-- MENSAJE MOTIVADOR EN NEÓN (carrusel) -->
             <div class="neon-message-carousel" id="neonMotivationalMessage">
                 ✨ BRILLA COMO NUNCA ✨
             </div>
@@ -768,6 +865,22 @@
         </div>
     </section>
 
+    <!-- ===== SECCIÓN X FOLLOW ===== -->
+    <div class="x-follow">
+        <div class="x-logo">𝕏</div>
+        <h2 data-i18n="x_title">Síguenos en X</h2>
+        <p data-i18n="x_text">No te pierdas las últimas noticias, actualizaciones y novedades de Neon Messages Party. Sigue a MaxStudio en X para estar al día.</p>
+        <a href="https://x.com/hellofiti" target="_blank" rel="noopener noreferrer" class="x-handle">@hellofiti</a>
+        <div class="x-buttons">
+            <a href="https://x.com/hellofiti" target="_blank" rel="noopener noreferrer" class="btn-x">
+                𝕏 <span data-i18n="x_follow_btn">Seguir a MaxStudio en X</span>
+            </a>
+            <button class="btn-share-x" onclick="shareOnX()">
+                𝕏 <span data-i18n="x_share_btn">Compartir esta página en X</span>
+            </button>
+        </div>
+    </div>
+
     <!-- ===== CTA ===== -->
     <section class="cta-section" id="cta">
         <div class="container">
@@ -876,7 +989,11 @@
                 footer_copy: "© 2026 Neon Messages Party · Desarrollado por Maximo Vargas · con ❤️",
                 footer_play: "Google Play",
                 footer_privacy: "Política de privacidad",
-                // Mensajes motivadores (carrusel)
+                x_title: "Síguenos en X",
+                x_text: "No te pierdas las últimas noticias, actualizaciones y novedades de Neon Messages Party. Sigue a MaxStudio en X para estar al día.",
+                x_follow_btn: "Seguir a MaxStudio en X",
+                x_share_btn: "Compartir esta página en X",
+                x_share_text: "¡Descubre Neon Messages Party! Convierte tu móvil en un cartel neón brillante. ✨📱",
                 motivational: [
                     "✨ BRILLA COMO NUNCA ✨",
                     "💡 LA NOCHE ES TUYA 💡",
@@ -946,6 +1063,11 @@
                 footer_copy: "© 2026 Neon Messages Party · Developed by Maximo Vargas · with ❤️",
                 footer_play: "Google Play",
                 footer_privacy: "Privacy Policy",
+                x_title: "Follow us on X",
+                x_text: "Don't miss the latest news, updates and novelties from Neon Messages Party. Follow MaxStudio on X to stay up to date.",
+                x_follow_btn: "Follow MaxStudio on X",
+                x_share_btn: "Share this page on X",
+                x_share_text: "Check out Neon Messages Party! Turn your phone into a glowing neon sign. ✨📱",
                 motivational: [
                     "✨ SHINE LIKE NEVER BEFORE ✨",
                     "💡 THE NIGHT IS YOURS 💡",
@@ -1015,6 +1137,11 @@
                 footer_copy: "© 2026 Neon Messages Party · Développé par Maximo Vargas · avec ❤️",
                 footer_play: "Google Play",
                 footer_privacy: "Politique de confidentialité",
+                x_title: "Suivez-nous sur X",
+                x_text: "Ne manquez pas les dernières nouvelles, mises à jour et nouveautés de Neon Messages Party. Suivez MaxStudio sur X pour rester informé.",
+                x_follow_btn: "Suivre MaxStudio sur X",
+                x_share_btn: "Partager cette page sur X",
+                x_share_text: "Découvrez Neon Messages Party ! Transformez votre téléphone en panneau néon lumineux. ✨📱",
                 motivational: [
                     "✨ BRILLE COMME JAMAIS ✨",
                     "💡 LA NUIT EST À TOI 💡",
@@ -1084,6 +1211,11 @@
                 footer_copy: "© 2026 Neon Messages Party · Sviluppato da Maximo Vargas · con ❤️",
                 footer_play: "Google Play",
                 footer_privacy: "Informativa sulla privacy",
+                x_title: "Seguici su X",
+                x_text: "Non perderti le ultime notizie, aggiornamenti e novità di Neon Messages Party. Segui MaxStudio su X per rimanere aggiornato.",
+                x_follow_btn: "Segui MaxStudio su X",
+                x_share_btn: "Condividi questa pagina su X",
+                x_share_text: "Scopri Neon Messages Party! Trasforma il tuo telefono in un cartello al neon luminoso. ✨📱",
                 motivational: [
                     "✨ BRILLA COME NON MAI ✨",
                     "💡 LA NOTTE È TUA 💡",
@@ -1153,6 +1285,11 @@
                 footer_copy: "© 2026 霓虹信息派对 · 由Maximo Vargas开发 · 用❤️制作",
                 footer_play: "Google Play",
                 footer_privacy: "隐私政策",
+                x_title: "在 X 上关注我们",
+                x_text: "不要错过 Neon Messages Party 的最新消息、更新和动态。在 X 上关注 MaxStudio，随时了解最新动态。",
+                x_follow_btn: "在 X 上关注 MaxStudio",
+                x_share_btn: "在 X 上分享此页面",
+                x_share_text: "快来看看 Neon Messages Party！把你的手机变成一个发光的霓虹灯牌。✨📱",
                 motivational: [
                     "✨ 像从未有过的那样闪耀 ✨",
                     "💡 夜晚是你的 💡",
@@ -1222,6 +1359,11 @@
                 footer_copy: "© 2026 Neon Messages Party · Разработано Maximo Vargas · с ❤️",
                 footer_play: "Google Play",
                 footer_privacy: "Политика конфиденциальности",
+                x_title: "Подписывайтесь на X",
+                x_text: "Не пропустите последние новости, обновления и новинки Neon Messages Party. Подписывайтесь на MaxStudio в X, чтобы быть в курсе.",
+                x_follow_btn: "Подписаться на MaxStudio в X",
+                x_share_btn: "Поделиться этой страницей в X",
+                x_share_text: "Посмотрите Neon Messages Party! Превратите свой телефон в светящуюся неоновую вывеску. ✨📱",
                 motivational: [
                     "✨ СИЯЙ КАК НИКОГДА ✨",
                     "💡 НОЧЬ ТВОЯ 💡",
@@ -1291,6 +1433,11 @@
                 footer_copy: "© 2026 Neon Messages Party · Entwickelt von Maximo Vargas · mit ❤️",
                 footer_play: "Google Play",
                 footer_privacy: "Datenschutzrichtlinie",
+                x_title: "Folge uns auf X",
+                x_text: "Verpasse keine Neuigkeiten, Updates und Neuerungen von Neon Messages Party. Folge MaxStudio auf X, um auf dem Laufenden zu bleiben.",
+                x_follow_btn: "MaxStudio auf X folgen",
+                x_share_btn: "Diese Seite auf X teilen",
+                x_share_text: "Entdecke Neon Messages Party! Verwandle dein Handy in ein leuchtendes Neonschild. ✨📱",
                 motivational: [
                     "✨ LEUCHTE WIE NIE ZUVOR ✨",
                     "💡 DIE NACHT GEHÖRT DIR 💡",
@@ -1360,6 +1507,11 @@
                 footer_copy: "© 2026 Neon Messages Party · Desenvolvido por Maximo Vargas · com ❤️",
                 footer_play: "Google Play",
                 footer_privacy: "Política de privacidade",
+                x_title: "Siga-nos no X",
+                x_text: "Não perca as últimas notícias, atualizações e novidades do Neon Messages Party. Siga a MaxStudio no X para ficar por dentro.",
+                x_follow_btn: "Seguir a MaxStudio no X",
+                x_share_btn: "Compartilhar esta página no X",
+                x_share_text: "Confira o Neon Messages Party! Transforme seu celular em um letreiro neon brilhante. ✨📱",
                 motivational: [
                     "✨ BRILHE COMO NUNCA ✨",
                     "💡 A NOITE É SUA 💡",
@@ -1388,7 +1540,6 @@
                 if (span.dataset.lang === lang) span.classList.add('active');
             });
 
-            // Actualizar textos estáticos
             i18nElements.forEach(el => {
                 const key = el.dataset.i18n;
                 if (translations[lang] && translations[lang][key] !== undefined) {
@@ -1396,7 +1547,6 @@
                 }
             });
 
-            // Actualizar placeholders
             placeholders.forEach(el => {
                 const key = el.dataset.i18nPlaceholder;
                 if (translations[lang] && translations[lang][key] !== undefined) {
@@ -1404,12 +1554,8 @@
                 }
             });
 
-            // Actualizar ejemplos
             renderExamples(lang);
-
-            // Actualizar mensaje motivador
             updateMotivationalMessage(lang);
-
             document.documentElement.lang = lang;
         }
 
@@ -1448,7 +1594,6 @@
                 </div>
             `).join('');
 
-            // Reasignar evento click a los ejemplos
             document.querySelectorAll('.example-chip').forEach(chip => {
                 chip.addEventListener('click', function() {
                     const raw = this.textContent.trim();
@@ -1493,6 +1638,19 @@
             if (e.key === 'Enter') updateNeon();
         });
 
+        // ==================== COMPARTIR EN X ====================
+        function shareOnX() {
+            const lang = document.documentElement.lang || 'es';
+            const text = translations[lang]?.x_share_text || translations.es.x_share_text;
+            const url = window.location.href;
+            const shareUrl = "https://twitter.com/intent/tweet?text="
+                + encodeURIComponent(text)
+                + "&url="
+                + encodeURIComponent(url)
+                + "&via=hellofiti";
+            window.open(shareUrl, "_blank", "width=600,height=500");
+        }
+
         // ==================== INICIALIZAR ====================
         function init() {
             const lang = 'es';
@@ -1500,13 +1658,11 @@
             startMotivationalCarousel(lang);
             updateNeon();
 
-            // Cambiar idioma al hacer clic
             allLangSpans.forEach(span => {
                 span.addEventListener('click', function() {
                     const lang = this.dataset.lang;
                     setLanguage(lang);
                     startMotivationalCarousel(lang);
-                    // Actualizar estado del carrusel
                     const messages = translations[lang]?.motivational || translations.es.motivational;
                     currentMotivationalIndex = 0;
                     const el = document.getElementById('neonMotivationalMessage');
